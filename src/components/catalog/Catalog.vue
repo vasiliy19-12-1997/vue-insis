@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { VueElement, reactive, ref, defineProps } from 'vue';
-import type { IPost } from './catalog.interface';
 import { useField } from 'vee-validate';
+import { defineProps, reactive } from 'vue';
+import type { IPost } from './catalog.interface';
 const props = defineProps<{ title: string }>();
 
 const isRequired = (value: string) =>
@@ -11,7 +11,7 @@ const { errorMessage, value } = useField(() => props.title, isRequired);
 const state: { posts: IPost[] } = reactive({
   posts: [
     {
-      id: 1,
+      id: Math.random(),
       userId: 1,
       title:
         'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
@@ -20,28 +20,28 @@ const state: { posts: IPost[] } = reactive({
   ],
 });
 const removePost = (id: number) => {
-  state.posts = state.posts.filter((post) => post.id !== id);
+  const index = state.posts.findIndex((post) => post.id === id);
+  index !== id ? state.posts.splice(index, 1) : null;
 };
 
 const addPost = () => {
   console.log(value);
   state.posts.push({ id: 2, title: value.value, userId: 2, body: '' });
-  localStorage.setItem('posts', JSON.stringify(state.posts));
   value.value = '';
 };
 </script>
 
 <template>
-  <div>
-    <h1>Add post</h1>
+  <div class="bg-red-100">
+    <h1 class="text-3xl font-bold underline">Add post</h1>
     <form action="">
       <input v-model="value" />
       <div v-if="errorMessage">{{ errorMessage }}</div>
       <button @click.prevent="addPost">Add</button>
     </form>
     <ul>
-      <li :key="post.id" v-for="post in state.posts">
-        <span>{{ post.id }} - {{ post.title }}</span>
+      <li :key="post.id" v-for="(post, index) in state.posts">
+        <span>{{ index }} - {{ post.title }}</span>
         <button @click="removePost(post.id)">delete</button>
       </li>
     </ul>
