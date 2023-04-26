@@ -1,0 +1,9 @@
+.wrapper {
+  @apply bg-white bg-opacity-5 p-5 rounded-lg shadow-green-500;
+  h1 {
+    @apply text-4xl mb-5;
+  }
+  > form {
+    @apply mb-4;
+  }
+}

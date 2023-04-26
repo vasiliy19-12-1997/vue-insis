@@ -2,6 +2,7 @@
 import { useField } from 'vee-validate';
 import { defineProps, reactive } from 'vue';
 import type { IPost } from './catalog.interface';
+import s from './Catalog.module.scss';
 const props = defineProps<{ title: string }>();
 
 const isRequired = (value: string) =>
@@ -16,7 +17,6 @@ const removePost = (id: number) => {
 };
 
 const addPost = () => {
-  console.log(value);
   state.posts.push({
     id: Math.random(),
     title: value.value,
@@ -28,7 +28,7 @@ const addPost = () => {
 </script>
 
 <template>
-  <div class="bg-blue-500">
+  <div :class="s.wrapper">
     <h1>Add post</h1>
     <form action="">
       <input v-model="value" />
