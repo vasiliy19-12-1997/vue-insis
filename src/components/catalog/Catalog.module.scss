@@ -1,9 +1,29 @@
+@import '../../assets/keyframes.scss';
+
 .wrapper {
   @apply bg-white bg-opacity-5 p-5 rounded-lg shadow-green-500;
   h1 {
     @apply text-4xl mb-5;
   }
   > form {
-    @apply mb-4;
+    @apply mb-8;
+    > input {
+      @apply rounded-lg p-3 text-white bg-black bg-opacity-70 block mb-3;
+    }
+    > button {
+      @apply bg-emerald-500 text-white rounded-lg px-8 py-3 font-semibold text-lg;
+    }
+  }
+  > ul {
+    > li {
+      @apply block bg-white bg-opacity-10 rounded-lg p-3 m-2;
+      animation: fade 0.4s;
+      > span {
+        @apply text-lg;
+      }
+      > button {
+        @apply text-red-400 text-xl ml-3  inline-flex justify-center items-center p-4 w-4 h-4 bg-white bg-opacity-10 rounded-full;
+      }
+    }
   }
 }

@@ -3,6 +3,6 @@ import Catalog from '@/components/catalog/Catalog.vue';
 </script>
 <template>
   <main>
-    <Catalog />
+    <Catalog title="Catalog" />
   </main>
 </template>

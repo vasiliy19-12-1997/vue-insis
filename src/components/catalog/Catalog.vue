@@ -1,44 +1,29 @@
 <script setup lang="ts">
-import { useField } from 'vee-validate';
-import { defineProps, reactive } from 'vue';
-import type { IPost } from './catalog.interface';
 import s from './Catalog.module.scss';
+import useCatalog from './useCatalogForm';
 const props = defineProps<{ title: string }>();
 
-const isRequired = (value: string) =>
-  (value && value.trim()) || 'This is required';
-
-const { errorMessage, value } = useField(() => props.title, isRequired);
-const state: { posts: IPost[] } = reactive({
-  posts: [],
-});
-const removePost = (id: number) => {
-  state.posts = state.posts.filter((post) => post.id !== id);
-};
-
-const addPost = () => {
-  state.posts.push({
-    id: Math.random(),
-    title: value.value,
-    userId: 2,
-    body: '',
-  });
-  value.value = '';
-};
+const { state, value, addPost, removePost, errorMessage } = useCatalog(props);
+// const { data, isLoading } = useQuery('get posts', () =>
+//   axios.get('https://jsonplaceholder.typicode.com/posts')
+// );
+// console.log(data);
 </script>
 
 <template>
   <div :class="s.wrapper">
     <h1>Add post</h1>
     <form action="">
-      <input v-model="value" />
+      <input v-model="value" placeholder="Enter post title..." />
       <div v-if="errorMessage">{{ errorMessage }}</div>
       <button @click.prevent="addPost">Add</button>
     </form>
+    <!-- <div v-if="isLoading">Loading...</div> -->
+    <div v-if="!state.posts.length">Posts not found</div>
     <ul>
       <li :key="post.id" v-for="(post, index) in state.posts">
         <span>{{ index }} - {{ post.title }}</span>
-        <button @click="removePost(post.id)">delete</button>
+        <button @click="removePost(post.id)">X</button>
       </li>
     </ul>
   </div>
