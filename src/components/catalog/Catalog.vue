@@ -28,8 +28,8 @@ const addPost = () => {
 </script>
 
 <template>
-  <div class="bg-red-100">
-    <h1 class="text-3xl font-bold underline">Add post</h1>
+  <div class="bg-blue-500">
+    <h1>Add post</h1>
     <form action="">
       <input v-model="value" />
       <div v-if="errorMessage">{{ errorMessage }}</div>
