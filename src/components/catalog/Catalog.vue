@@ -9,24 +9,20 @@ const isRequired = (value: string) =>
 
 const { errorMessage, value } = useField(() => props.title, isRequired);
 const state: { posts: IPost[] } = reactive({
-  posts: [
-    {
-      id: Math.random(),
-      userId: 1,
-      title:
-        'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-      body: 'quia et suscipitsuscipit recusandae consequuntur expedita et cumreprehenderit molestiae ut ut quas totamnostrum rerum est autem sunt rem eveniet architecto',
-    },
-  ],
+  posts: [],
 });
 const removePost = (id: number) => {
-  const index = state.posts.findIndex((post) => post.id === id);
-  index !== id ? state.posts.splice(index, 1) : null;
+  state.posts = state.posts.filter((post) => post.id !== id);
 };
 
 const addPost = () => {
   console.log(value);
-  state.posts.push({ id: 2, title: value.value, userId: 2, body: '' });
+  state.posts.push({
+    id: Math.random(),
+    title: value.value,
+    userId: 2,
+    body: '',
+  });
   value.value = '';
 };
 </script>
