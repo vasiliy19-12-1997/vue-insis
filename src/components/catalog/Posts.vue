@@ -5,13 +5,18 @@ import { useMutation, useQuery, useQueryClient } from 'vue-query';
 export default defineComponent({
   name: 'Posts',
   setup() {
-    const queryClient = useQueryClient;
+    const queryClient = useQueryClient();
     const { isLoading, data } = useQuery('get posts', () =>
       PostService.getAll()
     );
     const { mutate, isLoading: isLoadingDelete } = useMutation(
       'delete post',
-      (id: number) => PostService.delete(id)
+      (id: number) => PostService.delete(id),
+      {
+        onSuccess() {
+          queryClient.invalidateQueries('get posts');
+        },
+      }
     );
 
     return {
