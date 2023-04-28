@@ -1,21 +1,21 @@
-import type { IPost } from '@/components/catalog/Catalog.interface';
+import type { IPost } from '@/components/catalog/catalog.interface';
 import axios from 'axios';
-axios.defaults['baseURL'] = 'https://jsonplaceholder.typicode.com';
+axios.defaults['baseURL'] = 'http://localhost:3000';
 interface IPostDto extends Omit<IPost, 'id'> {}
 export const PostService = {
-  getAll: async () => {
-    return axios.get<IPost[]>('/posts?_limit=5');
+  async getAll() {
+    return axios.get<IPost[]>('/posts');
   },
 
-  create: async (body: IPostDto) => {
-    return axios.post('/posts?', body, {
+  async create(body: IPostDto) {
+    return axios.post('/posts', body, {
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
     });
   },
 
-  delete: async (id: number) => {
+  async delete(id: number) {
     return axios.delete(`/posts/${id}`);
   },
 };

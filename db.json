@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "userId": 1,
+      "id": 2,
+      "title": "qui est esse",
+      "body": "est rerum tempore vitaesequi sint nihil reprehenderit dolor beatae ea dolores nequefugiat blanditiis voluptate porro vel nihil molestiae ut reiciendisqui aperiam non debitis possimus qui neque nisi nulla"
+    },
+    {
+      "userId": 1,
+      "id": 3,
+      "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+      "body": "ullam et saepe reiciendis voluptatem adipisci"
+    },
+    {
+      "userId": 1,
+      "id": 4,
+      "title": "eum et est occaecati",
+      "body": "ullam et saepe reiciendis voluptatem adipisci"
+    }
+  ]
+}

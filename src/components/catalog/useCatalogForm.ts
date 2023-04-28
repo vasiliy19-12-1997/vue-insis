@@ -1,6 +1,6 @@
 import { useField } from 'vee-validate';
 import { reactive } from 'vue';
-import type { IPost } from './Catalog.interface';
+import type { IPost } from './catalog.interface';
 export const useCatalog = (props: Readonly<{ title: string }>) => {
   const isRequired = (value: string) =>
     (value && value.trim()) || 'This is required';
@@ -17,9 +17,9 @@ export const useCatalog = (props: Readonly<{ title: string }>) => {
 
   const addPost = () => {
     state.posts.push({
+      userId: 2,
       id: Math.random(),
       title: value.value,
-      userId: 2,
       body: '',
     });
     value.value = '';
