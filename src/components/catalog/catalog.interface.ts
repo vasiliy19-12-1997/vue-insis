@@ -7,3 +7,4 @@ export interface IPost {
 export interface IResponse<T> {
   data: T[];
 }
+export interface IPostDto extends Omit<IPost, 'id'> {}

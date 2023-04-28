@@ -1,7 +1,6 @@
-import type { IPost } from '@/components/catalog/catalog.interface';
+import type { IPost, IPostDto } from '@/components/catalog/catalog.interface';
 import axios from 'axios';
 axios.defaults['baseURL'] = 'http://localhost:3000';
-interface IPostDto extends Omit<IPost, 'id'> {}
 export const PostService = {
   async getAll() {
     return axios.get<IPost[]>('/posts');
