@@ -6,13 +6,13 @@ export const useCatalog = (props: Readonly<{ title: string }>) => {
     (value && value.trim()) || 'This is required';
 
   const { errorMessage, value } = useField(() => props.title, isRequired);
+
   const state: { posts: IPost[] } = reactive({
     posts: [],
   });
   const removePost = (id: number) => {
-    // const index = state.posts.findIndex((post) => post.id === id);
-    // index !== id ? state.posts.splice(index, 1) : null;
     state.posts = state.posts.filter((post) => post.id !== id);
+    console.log(`${state.posts} delete работает удаляет ${id} `);
   };
 
   const addPost = () => {
@@ -23,6 +23,7 @@ export const useCatalog = (props: Readonly<{ title: string }>) => {
       body: '',
     });
     value.value = '';
+    console.log(`${state.posts} добавляет`);
   };
   return {
     state,

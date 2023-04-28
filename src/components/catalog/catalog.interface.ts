@@ -4,3 +4,6 @@ export interface IPost {
   title: string;
   body: string;
 }
+export interface IResponse<T> {
+  data: T[];
+}
